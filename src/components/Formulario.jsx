@@ -26,7 +26,7 @@ export const Formulario = ({setSearch}) => {
 
         //Si todo esta Ok, entonces
         setError(false);
-        console.log(busqueda);
+
         //Realizar el proceso de búsqueda
         setSearch(busqueda);
     }

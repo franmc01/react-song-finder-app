@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { Formulario } from './components/Formulario';
 import axios from 'axios';
 import { Letra } from './components/Letra';
+import { Informacion } from './components/Informacion';
 
 function App() {
 
@@ -40,7 +41,7 @@ function App() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-
+            <Informacion information={information} />
           </div>
           <div className="col-md-6">
             <Letra lyrics={lyrics} />
