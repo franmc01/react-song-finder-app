@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Formulario = () => {
+export const Formulario = ({setSearch}) => {
     
     //Definición del initialState - Opcional
     const initialState = {
@@ -26,9 +26,9 @@ export const Formulario = () => {
 
         //Si todo esta Ok, entonces
         setError(false);
-
+        console.log(busqueda);
         //Realizar el proceso de búsqueda
-        console.log('Enviado');
+        setSearch(busqueda);
     }
 
     //Función que se ejecuta cada vez que los campos cambios su estado
