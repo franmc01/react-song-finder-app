@@ -7,18 +7,31 @@ function App() {
 
   const [search, setSearch] = useState({});
   const [lyrics, setLyrics] = useState('');
+  const [information, setInformation] = useState({});
 
   useEffect(() => {
-    const url = `https://api.lyrics.ovh/v1/${search?.artist}/${search?.music}`;
+    const urlOne = `https://api.lyrics.ovh/v1/${search?.artist}/${search?.music}`;
+    const urlTwo = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${search?.artist}`;
     if (Object.entries(search).length !== 0) {
-      consultarApi(url);
+      Promise.all([
+        consultarApiLyrics(urlOne),
+        consultarApiArtist(urlTwo)
+      ])
     }
-  }, [search])
+  }, [search, information])
 
-  const consultarApi = async (url) => {
-    const result = await axios.get(url);
+  const consultarApiLyrics = async (urlOne) => {
+    const result = await axios.get(urlOne);
     const { data } = result;
-    setLyrics(data.lyrics)
+    const lyrics = data.lyrics;
+    setLyrics(lyrics);
+  }
+
+  const consultarApiArtist = async (urlTwo) => {
+    const result = await axios.get(urlTwo);
+    const { data } = result;
+    const [artist] = data.artists;
+    setInformation(artist);
   }
 
   return (
